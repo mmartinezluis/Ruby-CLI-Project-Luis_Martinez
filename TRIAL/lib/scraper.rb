@@ -1,6 +1,7 @@
+require "pry"
 require 'nokogiri'
 require 'open-uri'
-require "pry"
+
 
 class Scraper
 
@@ -40,7 +41,26 @@ class Scraper
     trial_5 =random_quote_page.css("div div blockquote a").text
     trial_33 = random_quote_page.css(".fullwidth–content")
 
-
+    trial_X = random_quote_page.css("#top100data .container-fluid")
+    trial_X = random_quote_page.css(".container-fluid .col-container .block-quote a")
+    trial_XX = random_quote_page.css("#top100data .container-fluid .col-content .block-quote a").last.text
+    trial_Y = random_quote_page.css("#top100data .container-fluid").collect {|i| i}.last
   end
 
 end
+
+Scraper.random_quote
+random_quote_page.css("#top100data").select {|i| i}
+
+random_quote_page.css("#top100data").select {|i| i.css(".row .bq-a-center")}.join
+
+random_quote_page.css("#top100data").select {|i| i}.select {|j| j.css(".col-content .block-quote a").text}
+
+random_quote_page.css("#top100data").select {|j| j if j.css(".col-content .block-quote a").text}
+
+random_quote_page.css("#top100data").css(".col-content .block-quote a").select {|i| i}.length
+
+random_quote_page.css("#top100data").delete_if {|i| i.css(".row .bq-a-center")}
+
+
+".bq-a-center"
