@@ -1,10 +1,9 @@
 require "pry"
 require 'nokogiri'
 require 'open-uri'
-require_relative '../lib/quotes.rb'
+require_relative '../lib/quote.rb'
 
 class Scraper
-  @@final_quotes = [ ]
 
   def self.random_quote
     # Working quotes page without ads
@@ -18,12 +17,12 @@ class Scraper
 
     end
 
-    @@final_quotes = all_quotes.delete_if {|i| i.values.include? (nil)}
+    final_quotes = all_quotes.delete_if {|i| i.values.include? (nil)}
 
   end
-binding.pry
- end
 
+ end
+#binding.pry
 # random_quote_page.css("#hs_cos_wrapper_post_body p")[5].text.split("\"")[1]
 
 # random_quote_page.css("#hs_cos_wrapper_post_body p em")[0].text

@@ -1,6 +1,6 @@
 require_relative "../lib/scraper.rb"
 
-class Quotes
+class Quote
 
   attr_accessor :body, :author, :category
 
@@ -13,16 +13,20 @@ class Quotes
     @@all << self
   end
 
+  def self.create_from_list (quotes_array)
+    quotes_array.each {|quote| Quote.new(quote)}
+  end
 
 
   def self.random
-    @@all
-
+    chosen = @@all.sample
+    puts "\"#{chosen.body}\""
+    puts "#{chosen.author}"
   end
-
-end
 binding.pry
+end
+
 #  chosen = @@all.sample
 #  puts "chosen.body \nchose.author"
 
-Quotes.random
+Quote.random
