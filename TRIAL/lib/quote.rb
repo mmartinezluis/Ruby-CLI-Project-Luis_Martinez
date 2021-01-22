@@ -14,7 +14,7 @@ class Quote
   end
 
   def self.create_from_list (quotes_array)
-    quotes_array.each {|quote| Quote.new(quote)}
+    quotes_array.each {|quote| self.new(quote)}
   end
 
 
@@ -23,10 +23,13 @@ class Quote
     puts "\"#{chosen.body}\""
     puts "#{chosen.author}"
   end
-binding.pry
+
+  def print_quote (quote_object)
+    puts "\"#{quote_object.body}\""
+    puts "#{quote_object.author}"
+  end
+
 end
 
 #  chosen = @@all.sample
 #  puts "chosen.body \nchose.author"
-
-Quote.random
