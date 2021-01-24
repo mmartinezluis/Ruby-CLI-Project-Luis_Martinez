@@ -1,12 +1,11 @@
 require_relative "../lib/scraper.rb"
+require 'pry'
 
 class Quote
 
   attr_accessor :body, :author, :category
 
   @@all = [ ]
-
-  random_quotes = Scraper.random_quote
 
   def initialize (random_quotes)
     random_quotes.each {|key,value| self.send(("#{key}="), value)}
@@ -24,12 +23,20 @@ class Quote
     puts "#{chosen.author}"
   end
 
-  def print_quote (quote_object)
-    puts "\"#{quote_object.body}\""
-    puts "#{quote_object.author}"
+  def print_quote(quoteobject)
+    puts "\"#{quoteobject.body}\""
+    puts "#{quoteobject.author}"
+  end
+
+  def self.all
+    @@all
+  end
+
+  def self.delete
+    @@all.clear
   end
 
 end
-
+#random_quotes = Scraper.random_quote
 #  chosen = @@all.sample
 #  puts "chosen.body \nchose.author"
