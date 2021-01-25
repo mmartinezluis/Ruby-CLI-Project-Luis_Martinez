@@ -10,12 +10,12 @@ class QuotesCLI
 #  end
   def load_and_create_authors
     authors_array = Scraper.random_authors
-    Author.create_from_list(categories_array)
+    Author.create_from_list(authors_array)
   end
 
   def load_and_create_collaborating_quotes
     loaded_quotes = Scraper.random_quote
-    CollaboratingQuote.new(loaded_quotes)
+    CollaboratingQuote.create_from_list(loaded_quotes)
   end
 
   def load_and_create_categories
@@ -35,7 +35,7 @@ class QuotesCLI
     input = gets.strip.to_i
     if input < 1 || input > 3
       puts "Please type 1, 2 or 3"
-      user_input
+      user_input_method
     end
     input
   end
@@ -43,7 +43,7 @@ class QuotesCLI
   def option1_method
     puts "Retrieving quote ..."
     CollaboratingQuote.random
-    puts "\n\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
+    puts "\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
       self.call
@@ -53,15 +53,15 @@ class QuotesCLI
   end
 
   def option2_method
-    load_and_create_categories
+    #load_and_create_categories
     puts "Categories:"
     Category.list
     puts "\nType the number for your desired category"
     option2_helper_method_input
     category_input = option2_helper_method_input          # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
-    puts "Retrieving quote ...\n"
+    puts "Retrieving quote ..."
     Category.quote_from_category(category_input)
-    puts "\n\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
+    puts "\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
       self.call
@@ -70,8 +70,8 @@ class QuotesCLI
     end
   end
 
-  def option3_helper_method_input
-    load_and_create_authors
+  def option3_method
+    #load_and_create_authors
     puts "Authors:"
     Author.list
     puts "\nType the number for your desired author"
@@ -79,7 +79,7 @@ class QuotesCLI
     author_input = option3_helper_method_input
     puts "Retrieveing quote ..."
     Author.quote_from_author(author_input)
-    puts "\n\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
+    puts "\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
       self.call
@@ -107,6 +107,9 @@ class QuotesCLI
   end
 
   def call
+    load_and_create_authors
+    load_and_create_collaborating_quotes
+    load_and_create_categories
     main_menu
     input = user_input_method
     case input

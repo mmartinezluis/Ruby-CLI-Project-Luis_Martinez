@@ -21,10 +21,10 @@ class Scraper
     categories_list_page.css(".homeGridBox #allTopics .bqLn").each do |i|
       all_categories << {:name => i.text, :link => "https://www.brainyquotes#{i.css("a").attribute("href").value}"}
     end
-    selected_categories = all_categories.select {|hash| hash[:name]== "Attitude" || hash[:name]== "Life" || hash[:name]== "Motivational" || hash[:name]== "Wisdom" || hash[:name]== "Inspirational"}
+    selected_categories = all_categories.select {|hash| hash[:name] == "Attitude" || hash[:name] == "Life" || hash[:name] == "Motivational" || hash[:name] == "Wisdom" || hash[:name] == "Inspirational"}
   end
 
-  def category_quote(category_link)
+  def self.category_quote(category_link)
     #category_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com/topics/love-quotes"))
     category_quote_page = Nokogiri::HTML(open(category_link))
     category_quotes = [ ]
@@ -41,9 +41,10 @@ class Scraper
       all_authors << {:name => i.text.gsub("\n",""), :link => "https://www.brainyquotes#{i.css("a").attribute("href").value}"}
     end
     all_authors
+    #binding.pry
   end
 
-  def author_quote(author_link)
+  def self.author_quote(author_link)
     #author_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com//authors/martin-luther-king-jr-quotes"))
     author_quote_page = Nokogiri::HTML(open(author_link))
     author_quotes = [ ]

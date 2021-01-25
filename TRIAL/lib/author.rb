@@ -24,7 +24,7 @@ class Author
     @@all
   end
 
-  def quote_from_author (author_input)
+  def self.quote_from_author (author_input)
     normalized_input = author_input-1
     chosen_author = @@temporary[normalized_input]
     quote_hash = Scraper.author_quote(chosen_author.link)        #returns a hash

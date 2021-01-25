@@ -48,10 +48,9 @@ class CollaboratingQuote
 
   def self.all
     @@all
-    binding.pry
   end
 end
-CollaboratingQuote.all
+#CollaboratingQuote.all
 #random_quotes = Scraper.random_quote
 #  chosen = @@all.sample
 #  puts "chosen.body \nchose.author"
