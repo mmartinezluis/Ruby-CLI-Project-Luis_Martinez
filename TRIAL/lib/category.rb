@@ -29,7 +29,6 @@ class Category
   def quote_from_category (category_input)
     normalized_input = category_input-1
     chosen_category = @@all[normalized_input]
-    chosen_category.link
     quote_hash = Scraper.category_quote(chosen_category.link)        #returns a hash
     already_exist = CollaboratingQuote.all.select {|i| i.body == quote_hash[:body]}
     if already_exists != [ ]

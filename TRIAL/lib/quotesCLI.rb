@@ -107,7 +107,7 @@ class QuotesCLI
   end
 
   def call
-    user_introduction
+    main_menu
     input = user_input_method
     case input
     when 1
