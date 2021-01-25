@@ -9,12 +9,11 @@ class CollaboratingQuote
   @@all = [ ]
 
   def initialize (quote_hash)
-    author_object = Author.all.select {|i| i.name == quote_hash[:author]}
-    if author_object != [ ]
+    author_object = Author.all.find {|i| i.name == quote_hash[:author]}
+    if author_object != nil
       quote_hash[:author] = author_object
     end
     quote_hash.each {|key,value| self.send(("#{key}="), value)}
-
     @@all << self
   end
 
@@ -24,19 +23,35 @@ class CollaboratingQuote
 
   def self.random
     chosen = @@all.sample
-    puts "\"#{chosen.body}\""
-    puts "  #{chosen.author.name}"
+    if chosen.author.class == String
+      puts "\"#{chosen.body}\""
+      puts "  #{chosen.author}"
+    else
+      puts "\"#{chosen.body}\""
+      puts "  #{chosen.author.name}"
+    end
   end
 
   def print_quote(quote_object)
-    puts "\"#{quote_object.body}\""
-    puts "#{quote_object.author.name}"
+    if quote_object.author == String
+      puts "\"#{quote_object.body}\""
+      puts "#{quote_object.author}"
+    else
+      puts "\"#{quote_object.body}\""
+      puts "#{quote_object.author.name}"
+    end
+  end
+
+  def self.todos
+    @@all
   end
 
   def self.all
     @@all
+    binding.pry
   end
 end
+CollaboratingQuote.all
 #random_quotes = Scraper.random_quote
 #  chosen = @@all.sample
 #  puts "chosen.body \nchose.author"

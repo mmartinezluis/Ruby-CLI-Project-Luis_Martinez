@@ -17,7 +17,7 @@ class Author
 
   def self.list
     @@temporary = @@all.sample(10)
-    @@temporary.map.with_index {|category, index| puts "#{index + 1}. #{author.name}"}
+    @@temporary.map.with_index {|author, index| puts "#{index + 1}. #{author.name}"}
   end
 
   def self.all
