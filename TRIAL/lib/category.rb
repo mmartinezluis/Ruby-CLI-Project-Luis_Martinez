@@ -1,4 +1,7 @@
 require 'pry'
+require_relative "../lib/scraper.rb"
+require_relative '../lib/collaborating_quote_class.rb'
+
 class Category
 
   attr_accessor :name, :link
@@ -28,14 +31,14 @@ class Category
     chosen_category = @@all[normalized_input]
     chosen_category.link
     quote_hash = Scraper.category_quote(chosen_category.link)        #returns a hash
-    already_exist = Quote.all.select {|i| i.body == quote_hash[:body]}
-    if already_exist != [ ]
-      already_exist[0].category = chosen_category
-      Quote.print_quote(already_exist)
+    already_exist = CollaboratingQuote.all.select {|i| i.body == quote_hash[:body]}
+    if already_exists != [ ]
+      already_exists[0].category = chosen_category
+      CollaboratingQuote.print_quote(already_exists)
     else
-      new_quote = Quote.new(quote_hash)
+      new_quote = CollaboratingQuote.new(quote_hash)
       new_quote.category = chosen_category
-      Quote.print_quote(new_quote)
+      CollaboratingQuote.print_quote(new_quote)
     end
   end
 
