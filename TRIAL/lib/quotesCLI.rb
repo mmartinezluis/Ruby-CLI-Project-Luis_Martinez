@@ -1,8 +1,8 @@
-#require_relative "../lib/collaborating_quote_class.rb"
-#require_relative "../lib/scraper.rb"
-#require_relative "../lib/author.rb"
-#require_relative "../lib/category.rb"
-#require "pry"
+require_relative "../lib/collaborating_quote_class.rb"
+require_relative "../lib/scraper.rb"
+require_relative "../lib/author.rb"
+require_relative "../lib/category.rb"
+require "pry"
 
 class QuotesCLI
 #  def load_and_create_quotes
