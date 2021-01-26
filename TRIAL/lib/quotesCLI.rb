@@ -33,15 +33,6 @@ class QuotesCLI
     puts "\nType the number for your desired option."
   end
 
-  def user_input_method
-    user = gets.strip.to_i
-    if !(1..3).include?(user)
-      puts "Invalid input. Please enter 1, 2 or 3"
-      user_input_method
-    end
-    user
-  end
-
   def option1_method
     puts "Retrieving quote...\n"
     puts "\n"
@@ -52,6 +43,9 @@ class QuotesCLI
       option1_method
     elsif end_method_input == 2
       self.call
+    else
+      puts "Ending session..."
+      puts "Session ended"
     end
   end
 
@@ -71,6 +65,9 @@ class QuotesCLI
       option2_second_level_method(category_input)
     elsif end_method_input == 2
       self.call
+    else
+      puts "Ending session..."
+      puts "Session ended"
     end
   end
 
@@ -120,21 +117,35 @@ class QuotesCLI
     load_and_create_categories
   end
 
-  def call
+  def intro_display
     main_menu
-    user_input_method
-    case user_input_method
-    when 1
-      option1_method
-    when 2
-      option2_first_level_method
-      category_input = option2_helper_method_input                    # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
-      option2_second_level_method(category_input)
-    when 3
-      option3_first_level_method                                      # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
-      author_input = option3_helper_method_input
-      option3_second_level_method(author_input)
+  end
+
+  def main_menu_method
+    input = gets.strip
+    case input
+      when "1"
+        option1_method
+      when "2"
+        option2_first_level_method
+        category_input = option2_helper_method_input                    # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
+        option2_second_level_method(category_input)
+      when "3"
+        option3_first_level_method                                      # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
+        author_input = option3_helper_method_input
+        option3_second_level_method(author_input)
+      when "exit"
+        puts "Ending session..."
+        puts "Session ended."
+      else
+        puts "Invalid input. Please enter 1, 2 or 3. If you would like to end the session, type 'exit'."
+        main_menu_method
+      end
     end
+
+  def call
+    intro_display
+    main_menu_method
   end
 
   def run
@@ -150,3 +161,12 @@ end
 #    categories_array = Scraper.categories_list
 #    Category.create_from_list(categories_array)
 #  end
+
+#def user_input_method
+#  user = gets.strip.to_i
+#  if !(1..3).include?(user)
+#    puts "Invalid input. Please enter 1, 2 or 3"
+#    user_input_method
+#  end
+#  user
+#end
