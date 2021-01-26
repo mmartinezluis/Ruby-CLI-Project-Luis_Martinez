@@ -25,31 +25,33 @@ class QuotesCLI
   end
 
   def main_menu
+    puts "Welcome to your Quotes App"
     puts "How would you like your quote?"
-    puts "  1. Random Quote"
+    puts "  1. Random quote"
     puts "  2. Quote from category"
     puts "  3. Quote from random authors list"
     puts "\nType the number for your desired option."
   end
 
   def user_input_method
-    input = gets.strip.to_i
-    if input < 1 || input > 3
-      puts "Please type 1, 2 or 3"
+    user = gets.strip.to_i
+    if user < 1 || user > 3
+      puts "Please enter 1, 2 or 3"
       user_input_method
     end
-    input
+    user
   end
 
   def option1_method
-    puts "Retrieving quote ..."
+    puts "Retrieving quote...\n"
+    puts "\n"
     CollaboratingQuote.random
-    puts "\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
+    puts "\nFor another quote, press 1; for main menu, press 2; to end the session, press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
-      self.call
-    elsif end_method_input == 2
       option1_method
+    elsif end_method_input == 2
+      self.call
     end
   end
 
@@ -61,8 +63,9 @@ class QuotesCLI
 
   def option2_second_level_method(category_input)
     puts "Retrieving quote ..."
+    puts "\n"
     Category.quote_from_category(category_input)
-    puts "\nFor another quote from this category, enter 1; for main menu, enter 2; to end session, enter any other key."
+    puts "\nFor another quote from this category, press 1; for main menu, press 2; to end the session, press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
       option2_second_level_method(category_input)
@@ -71,20 +74,22 @@ class QuotesCLI
     end
   end
 
-  def option3_method
-    #load_and_create_authors
+  def option3_first_level_method
     puts "Authors:"
     Author.list
     puts "\nType the number for your desired author"
-    author_input = option3_helper_method_input
+  end
+
+  def option3_second_level_method(author_input)
     puts "Retrieveing quote ..."
+    puts "\n"
     Author.quote_from_author(author_input)
-    puts "\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
+    puts "\nFor another quote from this author, press 1; for main menu, press 2; to end the session, press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
-      self.call
+      option3_second_level_method(author_input)
     elsif end_method_input == 2
-      Author.quote_from_author(author_input)
+      self.call
     end
   end
 
@@ -106,14 +111,13 @@ class QuotesCLI
     author_input
   end
 
-  def load_methods
+  def load_databases
     load_and_create_authors
     load_and_create_collaborating_quotes
     load_and_create_categories
   end
 
   def call
-    load_methods
     main_menu
     input = user_input_method
     case input
@@ -124,9 +128,16 @@ class QuotesCLI
       category_input = option2_helper_method_input                    # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
       option2_second_level_method(category_input)
     when 3
-      option3_method
+      option3_first_level_method                                      # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
+      author_input = option3_helper_method_input
+      option3_second_level_method(author_input)
     end
     puts "Closing..."
+  end
+
+  def run
+    load_databases
+    call
   end
 #  binding.pry
 end

@@ -25,10 +25,10 @@ class CollaboratingQuote
     chosen = @@all.sample
     if chosen.author.class == String
       puts "\"#{chosen.body}\""
-      puts "  #{chosen.author}"
+      puts "#{chosen.author}"
     else
       puts "\"#{chosen.body}\""
-      puts "  #{chosen.author.name}"
+      puts "#{chosen.author.name}"
     end
   end
 
@@ -40,10 +40,6 @@ class CollaboratingQuote
       puts "\"#{quote_object.body}\""
       puts "#{quote_object.author.name}"
     end
-  end
-
-  def self.todos
-    @@all
   end
 
   def self.all
