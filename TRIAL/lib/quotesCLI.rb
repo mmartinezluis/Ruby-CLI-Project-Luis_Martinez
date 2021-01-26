@@ -35,8 +35,8 @@ class QuotesCLI
 
   def user_input_method
     user = gets.strip.to_i
-    if user < 1 || user > 3
-      puts "Please enter 1, 2 or 3"
+    if !(1..3).include?(user)
+      puts "Invalid input. Please enter 1, 2 or 3"
       user_input_method
     end
     user
@@ -81,7 +81,7 @@ class QuotesCLI
   end
 
   def option3_second_level_method(author_input)
-    puts "Retrieveing quote ..."
+    puts "Retrieving quote ..."
     puts "\n"
     Author.quote_from_author(author_input)
     puts "\nFor another quote from this author, press 1; for main menu, press 2; to end the session, press any other key."
@@ -90,13 +90,16 @@ class QuotesCLI
       option3_second_level_method(author_input)
     elsif end_method_input == 2
       self.call
+    else
+      puts "Ending session..."
+      puts "Session ended"
     end
   end
 
   def option2_helper_method_input
     category_input = gets.strip.to_i
     if category_input <= 0 || category_input > Category.all.count
-      puts "Invalid input. Please type the number for your desired category"
+      puts "Invalid input. Please type the number for your desired category."
       option2_helper_method_input
     end
     category_input
@@ -105,7 +108,7 @@ class QuotesCLI
   def option3_helper_method_input
     author_input = gets.strip.to_i
     if author_input <= 0 || author_input > 10
-      puts "Invalid input. Please type the number for your desired author"
+      puts "Invalid input. Please type the number for your desired author."
       option3_helper_method_input
     end
     author_input
@@ -119,8 +122,8 @@ class QuotesCLI
 
   def call
     main_menu
-    input = user_input_method
-    case input
+    user_input_method
+    case user_input_method
     when 1
       option1_method
     when 2
@@ -132,7 +135,6 @@ class QuotesCLI
       author_input = option3_helper_method_input
       option3_second_level_method(author_input)
     end
-    puts "Closing..."
   end
 
   def run
