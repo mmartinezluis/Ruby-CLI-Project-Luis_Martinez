@@ -30,7 +30,7 @@ class QuotesCLI
     puts "  1. Random quote"
     puts "  2. Quote from category"
     puts "  3. Quote from random authors list"
-    puts "\nType the number for your desired option."
+    puts "\nEnter the number for your desired option. If you would like to end the session, enter 'exit'."
   end
 
   def option1_method

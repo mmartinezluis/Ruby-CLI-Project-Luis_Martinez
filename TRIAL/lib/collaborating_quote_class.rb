@@ -9,11 +9,11 @@ class CollaboratingQuote
   @@all = [ ]
 
   def initialize (quote_hash)
-    author_object = Author.all.find {|i| i.name == quote_hash[:author]}
-    if author_object != nil
-      quote_hash[:author] = author_object
-    end
-    quote_hash.each {|key,value| self.send(("#{key}="), value)}
+    author_object = Author.all.find {|i| i.name == quote_hash[:author]}         # For any incoming qoute hash, search to see if there is an author object within the Author class that that matches the qoute hash's author key
+    if author_object != nil                                                     # If a mathcing atuhor object is found,
+      quote_hash[:author] = author_object                                       # replace the value from the incoming qoute hash's author key (originally a string) by the matching author OBJECT from the Author class;
+    end                                                                         # that is, make the "author" property of the quote equal to an OBJECT instead of a STRING; if no matching author object is found, leave the "author" property of the quote as a STRING
+    quote_hash.each {|key,value| self.send(("#{key}="), value)}                 # Mass assign the "body" and "author" keys from the incoming quote hash as properties for the new quote object, and the corresponding values of the hash as the return values for those properties, respectively.
     @@all << self
   end
 

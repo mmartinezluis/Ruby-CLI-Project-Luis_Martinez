@@ -26,7 +26,7 @@ class Category
     @@all
   end
 
-  def self.quote_from_category(category_input)
+  def self.quote_from_category(category_input)                                    # "category_input" is the input number from the user to choose his/her desired caategory from the categories list.
     normalized_input = category_input-1
     chosen_category = @@all[normalized_input]
     quote_hash = Scraper.category_quote(chosen_category.link)        #returns a hash
