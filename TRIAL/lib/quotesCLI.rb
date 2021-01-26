@@ -45,7 +45,7 @@ class QuotesCLI
       self.call
     else
       puts "Ending session..."
-      puts "Session ended"
+      puts "Session ended."
     end
   end
 
@@ -67,7 +67,7 @@ class QuotesCLI
       self.call
     else
       puts "Ending session..."
-      puts "Session ended"
+      puts "Session ended."
     end
   end
 
@@ -89,7 +89,7 @@ class QuotesCLI
       self.call
     else
       puts "Ending session..."
-      puts "Session ended"
+      puts "Session ended."
     end
   end
 

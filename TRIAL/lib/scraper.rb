@@ -40,9 +40,7 @@ class Scraper
     random_authors_page.css(".container .bqLn").each do |i|
       all_authors << {:name => i.text.gsub("\n",""), :link => "https://www.brainyquote.com#{i.css("a").attribute("href").value}"}
     end
-    all_authors.coun
-    filtered_authors = all_authors.delete_if {|i| i[:link].include?("authors")}                                                                         # The webpage contains a total of 448 authors
-    binding.pry
+    all_authors                                                 # The webpage contains a total of 448 authors
   end
 
   def self.author_quote(author_link)
