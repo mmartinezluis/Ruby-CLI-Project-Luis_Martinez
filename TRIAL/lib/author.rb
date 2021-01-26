@@ -28,8 +28,8 @@ class Author
     normalized_input = author_input-1
     chosen_author = @@temporary[normalized_input]
     quote_hash = Scraper.author_quote(chosen_author.link)        #returns a hash
-    already_exists = CollaboratingQuote.all.select {|i| i.body == quote_hash[:body]}
-    if already_exists != [ ]
+    already_exists = CollaboratingQuote.all.find {|i| i.body == quote_hash[:body]}
+    if already_exists != nil
       CollaboratingQuote.print_quote(already_exists)
     else
       new_quote = CollaboratingQuote.new(quote_hash)

@@ -2,6 +2,7 @@ require_relative "../lib/collaborating_quote_class.rb"
 require_relative "../lib/scraper.rb"
 require_relative "../lib/author.rb"
 require_relative "../lib/category.rb"
+require "pry"
 
 class QuotesCLI
 #  def load_and_create_quotes
@@ -52,21 +53,21 @@ class QuotesCLI
     end
   end
 
-  def option2_method
-    #load_and_create_categories
+  def option2_first_level_method
     puts "Categories:"
     Category.list
     puts "\nType the number for your desired category"
-    option2_helper_method_input
-    category_input = option2_helper_method_input          # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
+  end
+
+  def option2_second_level_method(category_input)
     puts "Retrieving quote ..."
     Category.quote_from_category(category_input)
-    puts "\nTo return to the main menu enter 1; to get another random quote enter 2; to end the session press any other key."
+    puts "\nFor another quote from this category, enter 1; for main menu, enter 2; to end session, enter any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
-      self.call
+      option2_second_level_method(category_input)
     elsif end_method_input == 2
-      Category.quote_from_category(category_input)
+      self.call
     end
   end
 
@@ -75,7 +76,6 @@ class QuotesCLI
     puts "Authors:"
     Author.list
     puts "\nType the number for your desired author"
-    option3_helper_method_input
     author_input = option3_helper_method_input
     puts "Retrieveing quote ..."
     Author.quote_from_author(author_input)
@@ -106,25 +106,32 @@ class QuotesCLI
     author_input
   end
 
-  def call
+  def load_methods
     load_and_create_authors
     load_and_create_collaborating_quotes
     load_and_create_categories
+  end
+
+  def call
+    load_methods
     main_menu
     input = user_input_method
     case input
     when 1
       option1_method
     when 2
-      option2_method
+      option2_first_level_method
+      category_input = option2_helper_method_input                    # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
+      option2_second_level_method(category_input)
     when 3
       option3_method
     end
     puts "Closing..."
   end
+#  binding.pry
 end
 
-
+#QuotesCLI.call
 #  def option2_helper_method_load_categories
 #    Scraper.categories_list
 #    categories_array = Scraper.categories_list

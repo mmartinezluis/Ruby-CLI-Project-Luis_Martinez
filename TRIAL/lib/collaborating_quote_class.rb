@@ -32,8 +32,8 @@ class CollaboratingQuote
     end
   end
 
-  def print_quote(quote_object)
-    if quote_object.author == String
+  def self.print_quote(quote_object)
+    if quote_object.author.class == String
       puts "\"#{quote_object.body}\""
       puts "#{quote_object.author}"
     else

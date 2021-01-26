@@ -28,11 +28,11 @@ class Category
 
   def self.quote_from_category(category_input)
     normalized_input = category_input-1
-    chosen_category = self.all[normalized_input]
+    chosen_category = @@all[normalized_input]
     quote_hash = Scraper.category_quote(chosen_category.link)        #returns a hash
-    already_exist = CollaboratingQuote.all.select {|i| i.body == quote_hash[:body]}
-    if already_exists != [ ]
-      already_exists[0].category = chosen_category
+    already_exists = CollaboratingQuote.all.find {|i| i.body == quote_hash[:body]}
+    if already_exists != nil
+      already_exists.category = chosen_category
       CollaboratingQuote.print_quote(already_exists)
     else
       new_quote = CollaboratingQuote.new(quote_hash)

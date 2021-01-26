@@ -19,7 +19,7 @@ class Scraper
     categories_list_page = Nokogiri::HTML(open("https://www.brainyquote.com/"))
     all_categories = [ ]
     categories_list_page.css(".homeGridBox #allTopics .bqLn").each do |i|
-      all_categories << {:name => i.text, :link => "https://www.brainyquotes#{i.css("a").attribute("href").value}"}
+      all_categories << {:name => i.text, :link => "https://www.brainyquotes.com#{i.css("a").attribute("href").value}"}
     end
     selected_categories = all_categories.select {|hash| hash[:name] == "Attitude" || hash[:name] == "Life" || hash[:name] == "Motivational" || hash[:name] == "Wisdom" || hash[:name] == "Inspirational"}
   end
@@ -38,10 +38,10 @@ class Scraper
     random_authors_page = Nokogiri::HTML(open("https://www.brainyquote.com/authors"))
     all_authors = [ ]
     random_authors_page.css(".container .bqLn").each do |i|
-      all_authors << {:name => i.text.gsub("\n",""), :link => "https://www.brainyquotes#{i.css("a").attribute("href").value}"}
+      all_authors << {:name => i.text.gsub("\n",""), :link => "https://www.brainyquote.com#{i.css("a").attribute("href").value}"}
     end
     all_authors
-    #binding.pry
+  #  binding.pry
   end
 
   def self.author_quote(author_link)
@@ -55,6 +55,6 @@ class Scraper
   end
 end
 
-#Scraper.random_authors
+Scraper.random_authors
 
 #category_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com/topics/love-quotes"))
