@@ -25,12 +25,12 @@ class QuotesCLI
   end
 
   def main_menu
-    puts "Welcome to your Quotes App"
-    puts "How would you like your quote?"
-    puts "  1. Random quote"
-    puts "  2. Quote from category"
-    puts "  3. Quote from random authors list"
-    puts "\nEnter the number for your desired option. If you would like to end the session, enter 'exit'."
+    puts  "Welcome to your Quotes App"
+    puts  "How would you like your quote?"
+    puts  "  1. Random quote"
+    puts  "  2. Quote from category"
+    puts  "  3. Quote from random authors list"
+    puts  "\nEnter the number for your desired option. If you would like to end the session, enter 'exit'."
   end
 
   def option1_method
@@ -88,8 +88,7 @@ class QuotesCLI
     elsif end_method_input == 2
       self.call
     else
-      puts "Ending session..."
-      puts "Session ended."
+      closing_method
     end
   end
 
@@ -121,6 +120,11 @@ class QuotesCLI
     main_menu
   end
 
+  def closing_method
+    puts "Ending session..."
+    puts "Session ended."
+  end
+
   def main_menu_method
     input = gets.strip
     case input
@@ -135,10 +139,9 @@ class QuotesCLI
         author_input = option3_helper_method_input
         option3_second_level_method(author_input)
       when "exit"
-        puts "Ending session..."
-        puts "Session ended."
+        closing_method
       else
-        puts "Invalid input. Please enter 1, 2 or 3. If you would like to end the session, type 'exit'."
+        puts "Invalid input. Please enter 1, 2 or 3. If you would like to end the session, type exit."
         main_menu_method
       end
     end
