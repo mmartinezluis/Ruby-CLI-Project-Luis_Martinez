@@ -5,14 +5,12 @@ module Integration
 
   end
 
-  class KlassMethods
+  class ClassMethods
 
   end
 
   class InstanceMethods
 
   end
-
-
 
 end

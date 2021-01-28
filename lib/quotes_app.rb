@@ -1,6 +1,6 @@
-require "TRIAL/version"
+require "quotes_app/version"
 
-module TRIAL
+module QuotesApp
   class Error < StandardError; end
   # Your code goes here...
 end

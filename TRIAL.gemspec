@@ -1,18 +1,21 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "TRIAL/version"
+require "quotes-app/version"
 
 
 
 Gem::Specification.new do |spec|
-  spec.name          = "TRIAL"
-  spec.version       = TRIAL::VERSION
+  spec.name          = "quotes-app"
+  spec.version       = QuotesApp::VERSION
   spec.authors       = ["'Luis Martinez'"]
   spec.email         = ["'luis_mmartinez@live.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Dipslay random quotes, from authors, and from categories.}
+  spec.description   = <<~ DESC
+    Get a qoute randomly or from a list of authors or from
+    a list of categories.
+  DESC
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
