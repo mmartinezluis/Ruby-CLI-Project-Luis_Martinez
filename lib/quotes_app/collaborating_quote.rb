@@ -1,15 +1,15 @@
-require_relative "../lib/scraper.rb"
-require_relative "../lib/author.rb"
-require 'pry'
+#require_relative "../lib/scraper.rb"
+#require_relative "../lib/author.rb"
+#require 'pry'
 
-class CollaboratingQuote
+class QuotesApp::CollaboratingQuote
 
   attr_accessor :body, :author, :category
 
   @@all = [ ]
 
   def initialize (quote_hash)
-    author_object = Author.all.find {|i| i.name == quote_hash[:author]}         # For any incoming qoute hash, search to see if there is an author object within the Author class that that matches the qoute hash's author key
+    author_object = QuotesApp::Author.all.find {|i| i.name == quote_hash[:author]}         # For any incoming qoute hash, search to see if there is an author object within the Author class that that matches the qoute hash's author key
     if author_object != nil                                                     # If a mathcing atuhor object is found,
       quote_hash[:author] = author_object                                       # replace the value from the incoming qoute hash's author key (originally a string) by the matching author OBJECT from the Author class;
     end                                                                         # that is, make the "author" property of the quote equal to an OBJECT instead of a STRING; if no matching author object is found, leave the "author" property of the quote as a STRING

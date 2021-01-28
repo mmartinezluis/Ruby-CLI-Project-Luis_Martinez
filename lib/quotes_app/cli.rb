@@ -7,18 +7,18 @@ class QuotesApp::CLI
 #    Quote.new(loaded_quotes)
 #  end
   def load_and_create_authors
-    authors_array = Scraper.random_authors
-    Author.create_from_list(authors_array)
+    authors_array = QuotesApp::Scraper.random_authors
+    QuotesApp::Author.create_from_list(authors_array)
   end
 
   def load_and_create_collaborating_quotes
-    loaded_quotes = Scraper.random_quote
-    CollaboratingQuote.create_from_list(loaded_quotes)
+    loaded_quotes = QuotesApp::Scraper.random_quote
+    QuotesApp::CollaboratingQuote.create_from_list(loaded_quotes)
   end
 
   def load_and_create_categories
-    categories_array = Scraper.categories_list
-    Category.create_from_list(categories_array)
+    categories_array = QuotesApp::Scraper.categories_list
+    QuotesApp::Category.create_from_list(categories_array)
   end
 
   def main_menu
@@ -33,7 +33,7 @@ class QuotesApp::CLI
   def option1_method
     puts "Retrieving quote...\n"
     puts "\n"
-    CollaboratingQuote.random
+    QuotesApp::CollaboratingQuote.random
     puts "\nFor another quote, press 1; for main menu, press 2; to end the session, press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
@@ -48,14 +48,14 @@ class QuotesApp::CLI
 
   def option2_first_level_method
     puts "Categories:"
-    Category.list
+    QuotesApp::Category.list
     puts "\nType the number for your desired category"
   end
 
   def option2_second_level_method(category_input)
     puts "Retrieving quote ..."
     puts "\n"
-    Category.quote_from_category(category_input)
+    QuotesApp::Category.quote_from_category(category_input)
     puts "\nFor another quote from this category, press 1; for main menu, press 2; to end the session, press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
@@ -63,21 +63,20 @@ class QuotesApp::CLI
     elsif end_method_input == 2
       self.call
     else
-      puts "Ending session..."
-      puts "Session ended."
+      closing_method
     end
   end
 
   def option3_first_level_method
     puts "Authors:"
-    Author.list
+    QuotesApp::Author.list
     puts "\nType the number for your desired author"
   end
 
   def option3_second_level_method(author_input)
     puts "Retrieving quote ..."
     puts "\n"
-    Author.quote_from_author(author_input)
+    QuotesApp::Author.quote_from_author(author_input)
     puts "\nFor another quote from this author, press 1; for main menu, press 2; to end the session, press any other key."
     end_method_input = gets.to_i
     if end_method_input == 1
@@ -91,7 +90,7 @@ class QuotesApp::CLI
 
   def option2_helper_method_input
     category_input = gets.strip.to_i
-    if category_input <= 0 || category_input > Category.all.count
+    if category_input <= 0 || category_input > QuotesApp::Category.all.count
       puts "Invalid input. Please type the number for your desired category."
       option2_helper_method_input
     end
