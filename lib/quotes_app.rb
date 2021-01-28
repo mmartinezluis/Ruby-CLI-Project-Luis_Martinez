@@ -1,5 +1,5 @@
-require "quotes-app/version"
-require_relative "../lib/collaborating_quote_class.rb"
+require "quotes_app/version"
+require_relative "../lib/collaborating_quote.rb"
 require_relative "../lib/scraper.rb"
 require_relative "../lib/author.rb"
 require_relative "../lib/category.rb"
