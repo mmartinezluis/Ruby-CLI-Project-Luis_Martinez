@@ -2,7 +2,7 @@ require_relative "../lib/scraper.rb"
 require_relative "../lib/author.rb"
 require 'pry'
 
-class QuotesApp::CollaboratingQuote
+class CollaboratingQuote
 
   attr_accessor :body, :author, :category
 

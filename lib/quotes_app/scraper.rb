@@ -1,9 +1,9 @@
-require "pry"
-require 'nokogiri'
-require 'open-uri'
-require_relative '../lib/collaborating_quote_class.rb'
+#require "pry"
+#require 'nokogiri'
+#require 'open-uri'
+#require_relative '../lib/collaborating_quote_class.rb'
 
-class Scraper
+class QuotesApp::Scraper
 
   def self.random_quote
     # Working quotes page without dynamic ads
@@ -53,7 +53,3 @@ class Scraper
    author_quotes.sample
   end
 end
-
-Scraper.random_authors
-
-#category_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com/topics/love-quotes"))

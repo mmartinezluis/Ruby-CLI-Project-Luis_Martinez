@@ -1,5 +1,5 @@
 
-class Author
+class QuotesApp::Author
 
   attr_accessor :name, :link
 
@@ -27,13 +27,13 @@ class Author
   def self.quote_from_author (author_input)                                           # "author_input" is the input number from the user to choose his/her desired atuhor from the atuhors list.
     normalized_input = author_input-1
     chosen_author = @@temporary[normalized_input]
-    quote_hash = Scraper.author_quote(chosen_author.link)                             #returns a hash
-    already_exists = CollaboratingQuote.all.find {|i| i.body == quote_hash[:body]}    # If the quote is already included in the ""@@all" array from the CollaboratingQuote class,
+    quote_hash = QuotesApp::Scraper.author_quote(chosen_author.link)                             #returns a hash
+    already_exists = QuotesApp::CollaboratingQuote.all.find {|i| i.body == quote_hash[:body]}    # If the quote is already included in the ""@@all" array from the CollaboratingQuote class,
     if already_exists != nil
-      CollaboratingQuote.print_quote(already_exists)                                    # print the quote
+      QuotesApp::CollaboratingQuote.print_quote(already_exists)                                    # print the quote
     else                                                                              # If the quote is not included in the "all" array from the CollaboratingQuote class,
-      new_quote = CollaboratingQuote.new(quote_hash)                                  # Create a new quote object using hte "body" property and the "author" property of the qoute hash
-      CollaboratingQuote.print_quote(new_quote)                                       # and print the new quote object
+      new_quote = QuotesApp::CollaboratingQuote.new(quote_hash)                                  # Create a new quote object using hte "body" property and the "author" property of the qoute hash
+      QuotesApp::CollaboratingQuote.print_quote(new_quote)                                       # and print the new quote object
     end
   end
 end

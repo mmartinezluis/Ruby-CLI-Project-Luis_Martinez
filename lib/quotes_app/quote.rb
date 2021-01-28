@@ -1,7 +1,7 @@
-require_relative "../lib/scraper.rb"
-require 'pry'
+#require_relative "../lib/scraper.rb"
+#require 'pry'
 
-class Quote
+class QuotesApp::Quote
 
   attr_accessor :body, :author, :category
 

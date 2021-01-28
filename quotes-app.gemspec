@@ -12,11 +12,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["'luis_mmartinez@live.com'"]
 
   spec.summary       = %q{Dipslay random quotes, from authors, and from categories.}
-  spec.description   = <<~ DESC
-    Get a qoute randomly or from a list of authors or from
-    a list of categories.
-  DESC
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.description   = %q{Get a qoute randomly or from a list of authors or from a list of categories.}
+  spec.homepage      = "git@github.com:mmartinezluis/quotes-app-cli.git"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -43,4 +40,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "pry"
+  spec.add_dependency "nokogiri"
 end

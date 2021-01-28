@@ -1,12 +1,12 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "quotes_app/version"
+#require "quotes-app/version"
 
 
 
 Gem::Specification.new do |spec|
-  spec.name          = "quotes_app"
+  spec.name          = "quotes-app"
   spec.version       = QuotesApp::VERSION
   spec.authors       = ["'Luis Martinez'"]
   spec.email         = ["'luis_mmartinez@live.com'"]
