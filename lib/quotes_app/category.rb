@@ -1,6 +1,6 @@
-require 'pry'
-require_relative "../lib/scraper.rb"
-require_relative '../lib/collaborating_quote_class.rb'
+#require 'pry'
+#require_relative "../lib/scraper.rb"
+#require_relative '../lib/collaborating_quote_class.rb'
 
 class QuotesApp::Category
 

@@ -1,12 +1,15 @@
-require "quotes_app/version"
-require_relative "../lib/collaborating_quote.rb"
-require_relative "../lib/scraper.rb"
-require_relative "../lib/author.rb"
-require_relative "../lib/category.rb"
-
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+
+require_relative "./quotes_app/version"
+require_relative "./quotes_app/collaborating_quote.rb"
+require_relative "./quotes_app/author.rb"
+require_relative "./quotes_app/category.rb"
+require_relative "./quotes_app/cli.rb"
+require_relative "./quotes_app/scraper.rb"
+
+
 
 module QuotesApp
   class Error < StandardError; end
