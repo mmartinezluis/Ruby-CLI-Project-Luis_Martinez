@@ -1,9 +1,9 @@
-#require "pry"
-#require 'nokogiri'
-#require 'open-uri'
+require "pry"
+require 'nokogiri'
+require 'open-uri'
 #require_relative '../lib/collaborating_quote_class.rb'
 
-class QuotesApp::Scraper
+class Scraper                    # QuotesApp::Scraper
 
   def self.random_quote
     # Working quotes page without dynamic ads
@@ -22,6 +22,7 @@ class QuotesApp::Scraper
       all_categories << {:name => i.text, :link => "https://www.brainyquotes.com#{i.css("a").attribute("href").value}"}           # Webpage contains a total of 10 categories
     end
     selected_categories = all_categories.select {|hash| hash[:name] == "Attitude" || hash[:name] == "Life" || hash[:name] == "Motivational" || hash[:name] == "Wisdom" || hash[:name] == "Inspirational"}
+    binding.pry
   end
 
   def self.category_quote(category_link)
@@ -51,5 +52,7 @@ class QuotesApp::Scraper
       author_quotes << {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}               # The webpage for each author contains 60 quotes
    end
    author_quotes.sample
+
   end
 end
+Scraper.categories_list
