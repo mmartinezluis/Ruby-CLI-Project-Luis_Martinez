@@ -70,8 +70,6 @@ reversed_quotes_array =  [
                              :author=>"Benjamin Franklin"}
                           ]
 
-
-
 array= [{:length=>"10 letters", :author=>"Democritus"}, {:length=>"20 words", :author=>"Socrates"}]
 array= [{:length=>"10 letters", :author=>"Democritus"}]
 
@@ -120,3 +118,12 @@ Result from calling initialize with 'reversed_quotes_array':
  @body=
   "Always bear in mind that your own resolution to success is more important than any other
 one thing.">]
+
+
+quotes_array = [
+  {:body=>"I didn't fail the test. I just found 100 ways to do it wrong.",
+   :author=>"Benjamin Franklin"},
+  {:body=>
+   "Always bear in mind that your own resolution to success is more important than any other one thing.",
+   :author=>"Abraham Lincoln"}
+ ]

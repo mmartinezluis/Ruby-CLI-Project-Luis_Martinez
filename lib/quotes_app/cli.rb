@@ -41,8 +41,7 @@ class QuotesApp::CLI
     elsif end_method_input == 2
       self.call
     else
-      puts "Ending session..."
-      puts "Session ended."
+      clsoing_method
     end
   end
 

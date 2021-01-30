@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 #require_relative "../lib/scraper.rb"
 #require_relative '../lib/collaborating_quote_class.rb'
 
@@ -10,7 +10,6 @@ class QuotesApp::Category
 
   def initialize (category_hash)
     category_hash.each {|key, value| self.send(("#{key}="), value)}
-
     @@all << self
   end
 
@@ -24,11 +23,12 @@ class QuotesApp::Category
 
   def self.all
     @@all
+
   end
 
   def self.quote_from_category(category_input)                                    # "category_input" is the input number from the user to choose his/her desired caategory from the categories list.
     normalized_input = category_input-1
-    chosen_category = @@all[normalized_input]
+    chosen_category = self.all[normalized_input]
     quote_hash = QuotesApp::Scraper.category_quote(chosen_category.link)        #returns a hash
     already_exists = QuotesApp::CollaboratingQuote.all.find {|i| i.body == quote_hash[:body]}      # If the quote is already included in the ""@@all" array from the CollaboratingQuote class,
     if already_exists != nil
@@ -41,3 +41,5 @@ class QuotesApp::Category
     end
   end
 end
+
+#Category.all
