@@ -1,60 +1,36 @@
-  # require "pry"
-  # require 'nokogiri'
-  # require 'open-uri'
-#require_relative '../lib/collaborating_quote_class.rb'
-
 class QuotesApp::Scraper
-
   def self.random_quote
-    # Working quotes page without dynamic ads
-    random_quote_page = Nokogiri::HTML(open("https://blog.hubspot.com/sales/famous-quotes"))
-
+    random_quote_page = Nokogiri::HTML(open("https://blog.hubspot.com/sales/famous-quotes"))        # Working quotes page without dynamic ads
     random_quote_page.css("#hs_cos_wrapper_post_body p").collect do |i|
-
       {:body => i.text.split("\"")[1], :author => i.css("em").text.strip}
-
-    end.delete_if {|i| i.values.include? (nil)}.uniq                 # Array contains a total of 100 qoutes
+    end.delete_if {|i| i.values.include? (nil)}.uniq                                                # Array contains a total of 100 qoutes
   end
 
   def self.categories_list
     categories_list_page = Nokogiri::HTML(open("https://www.brainyquote.com/"))
-
     categories_list_page.css(".homeGridBox #allTopics .bqLn").collect do |i|
-
-      {:name => i.text, :link => "https://www.brainyquotes.com#{i.css("a").attribute("href").value}"}           # Webpage contains a total of 10 categories
-
+      {:name => i.text, :link => "https://www.brainyquotes.com#{i.css("a").attribute("href").value}"}                                                                            # Webpage contains a total of 10 categories. I chose to display 5 categories only.
     end.select{ |hash| hash[:name] == "Inspirational" || hash[:name] == "Motivational" || hash[:name] == "Life" || hash[:name] == "Wisdom" || hash[:name] == "Attitude"}
   end
 
   def self.category_quote(category_link)
-    #category_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com/topics/love-quotes"))
-    category_quote_page = Nokogiri::HTML(open(category_link))
-
+    category_quote_page = Nokogiri::HTML(open(category_link))                                        #category_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com/topics/love-quotes"))
     category_quote_page.css("#quotesList .m-brick").collect do |i|
-
-      {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}                 # Each category webpage contains a total of 60 quotes
+      {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}                             # Each category webpage contains a total of 60 quotes
    end.sample
   end
 
   def self.random_authors
     random_authors_page = Nokogiri::HTML(open("https://www.brainyquote.com/authors"))
-
     random_authors_page.css(".container .bqLn").collect do |i|
-
-      {:name => i.text.gsub("\n",""), :link => "https://www.brainyquote.com#{i.css("a").attribute("href").value}"}
-    end                                                                                    # The webpage contains a total of 448 authors
+      {:name => i.text.gsub("\n",""), :link => "https://www.brainyquote.com#{i.css("a").attribute("href").value}"}                # The webpage contains a total of 448 authors
+    end
   end
 
   def self.author_quote(author_link)
-    #author_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com//authors/martin-luther-king-jr-quotes"))
-    author_quote_page = Nokogiri::HTML(open(author_link))
-
+    author_quote_page = Nokogiri::HTML(open(author_link))                                                                         #author_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com//authors/martin-luther-king-jr-quotes"))
     author_quote_page.css(".reflow_body .m-brick").collect do |i|
-
-      {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}               # The webpage for each author contains 60 quotes
+      {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}                                                          # The webpage for each author contains 60 quotes
     end.sample
   end
-
 end
-
-#Scraper.random_authors

@@ -1,7 +1,4 @@
-#require_relative "../lib/scraper.rb"
-#require 'pry'
-                    #This Quote class does not use object collaboration.
-class Quote
+class Quote                                   #This Quote class is not used in the CLI (it is optional quote class)      #This Quote class does not use object collaboration.
 
   attr_accessor :body, :author, :category
 
@@ -23,9 +20,9 @@ class Quote
     puts "#{chosen.author}"
   end
 
-  def print_quote(quoteobject)
-    puts "\"#{quoteobject.body}\""
-    puts "#{quoteobject.author}"
+  def print_quote(quote_object)
+    puts "\"#{quote_object.body}\""
+    puts "#{quoteo_bject.author}"
   end
 
   def self.all
@@ -35,8 +32,4 @@ class Quote
   def self.delete
     @@all.clear
   end
-
 end
-#random_quotes = Scraper.random_quote
-#  chosen = @@all.sample
-#  puts "chosen.body \nchose.author"

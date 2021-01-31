@@ -82,7 +82,6 @@ Result from calling initialize with 'quotes_array':
    "Always bear in mind that your own resolution to success is more important than any other
  one thing.">]
 
-
 Examining the @@all array from Quote class:
 [#<Scraper::Quote:0x0000000002b35860
   @author="Abraham Lincoln",
@@ -108,7 +107,6 @@ Result from calling initialize with 'reversed_quotes_array':
   @author="Benjamin Franklin",
   @body="I didn't fail the test. I just found 100 ways to do it wrong.">]
 
-
   Objects created:
   [#<Scraper::Quote:0x0000000002a80528
  @author="Benjamin Franklin",
@@ -118,7 +116,6 @@ Result from calling initialize with 'reversed_quotes_array':
  @body=
   "Always bear in mind that your own resolution to success is more important than any other
 one thing.">]
-
 
 quotes_array = [
   {:body=>"I didn't fail the test. I just found 100 ways to do it wrong.",

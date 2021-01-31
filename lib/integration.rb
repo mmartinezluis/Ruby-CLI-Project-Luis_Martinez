@@ -1,9 +1,5 @@
 
-module Integration
-
-  class ScraperMethods
-
-  end
+module Integration                   # For future improvements
 
   class ClassMethods
 

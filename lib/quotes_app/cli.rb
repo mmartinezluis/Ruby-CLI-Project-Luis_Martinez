@@ -1,6 +1,3 @@
-
-require "pry"
-
 class QuotesApp::CLI
 
   def run
@@ -38,7 +35,7 @@ class QuotesApp::CLI
       category_input = option2_helper_method_input                                                                 # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
       option2_second_level_method(category_input)
     when "3"
-      option3_first_level_method                                      # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
+      option3_first_level_method                                                                                   # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
       author_input = option3_helper_method_input
       option3_second_level_method(author_input)
     when "exit"
@@ -144,6 +141,7 @@ class QuotesApp::CLI
     puts "Session ended."
   end
 end
+
 
 
 
