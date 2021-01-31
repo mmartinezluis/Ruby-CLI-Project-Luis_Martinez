@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 #require_relative "../lib/scraper.rb"
 #require_relative '../lib/collaborating_quote_class.rb'
 
@@ -23,7 +23,6 @@ class QuotesApp::Category
 
   def self.all
     @@all
-
   end
 
   def self.quote_from_category(category_input)                                    # "category_input" is the input number from the user to choose his/her desired caategory from the categories list.

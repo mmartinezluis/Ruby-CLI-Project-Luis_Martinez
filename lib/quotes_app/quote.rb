@@ -1,7 +1,7 @@
 #require_relative "../lib/scraper.rb"
 #require 'pry'
-
-class QuotesApp::Quote
+                    #This Quote class does not use object collaboration.
+class Quote
 
   attr_accessor :body, :author, :category
 
