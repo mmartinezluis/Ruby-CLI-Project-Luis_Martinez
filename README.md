@@ -2,7 +2,7 @@
 
 Welcome to your QuotesApp gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/TRIAL`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-You may find a blog post associated with this gem in my Medium website at
+You may find a blog post associated with this gem in my Medium website at 
 https://medium.com/swlh/object-oriented-ruby-and-my-first-ruby-project-quotes-app-d47cec3585f1
 
 ## Installation
@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-You can use QuotesApp to get a random quote, to get a quuote from a list of 5 categories or to get a quote from a list of 10 random authors. Just follow the provided instructions to get quoote(s) form you desired options. 
+You can use QuotesApp to get a random quote, to get a quote from a list of 5 categories or to get a quote from a list of 10 random authors. Just follow the provided instructions to get a quote(s) from you desired options. 
 
 ## Development
 
