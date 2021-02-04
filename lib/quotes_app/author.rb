@@ -15,8 +15,9 @@ class QuotesApp::Author
   end
 
   def self.list
-    @@temporary = @@all.sample(10)                                                                       # From all of the author objects, chosee 10 randomly
-    @@temporary.map.with_index {|author, index| puts "#{index + 1}. #{author.name}"}                     # Display the 10 chosen random authors in list form
+    @@temporary = @@all.sample(10).sort{|a,b| a.name <=> b.name}
+   # @@all.sample.sort_by {|a| a.name}                                                                       # From all of the author objects, chosee 10 randomly
+    @@temporary.map.with_index {|author, index| puts "#{index + 1}. #{author.name}"}                    # Display the 10 chosen random authors in list form
   end
 
   def self.all
@@ -36,3 +37,5 @@ class QuotesApp::Author
     end
   end
 end
+
+
