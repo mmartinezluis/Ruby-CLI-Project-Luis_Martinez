@@ -10,14 +10,14 @@ class QuotesApp::Scraper
     categories_list_page = Nokogiri::HTML(open("https://www.brainyquote.com/"))
     categories_list_page.css(".homeGridBox #allTopics .bqLn").collect do |i|
       {:name => i.text, :link => "https://www.brainyquotes.com#{i.css("a").attribute("href").value}"}                                                                            # Webpage contains a total of 10 categories. I chose to display 5 categories only.
-    end.select{ |hash| hash[:name] == "Inspirational" || hash[:name] == "Motivational" || hash[:name] == "Life" || hash[:name] == "Wisdom" || hash[:name] == "Attitude"}
+    end.select{ |hash| hash[:name] == "Inspirational" || hash[:name] == "Motivational" || hash[:name] == "Life" || hash[:name] == "Wisdom" || hash[:name] == "Friendship"}
   end
 
   def self.category_quote(category_link)
     category_quote_page = Nokogiri::HTML(open(category_link))                                        #category_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com/topics/love-quotes"))
-    category_quote_page.css("#quotesList .m-brick").collect do |i|
+    category_quote_page.css("#quotesList .grid-item").collect do |i|
       {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}                             # Each category webpage contains a total of 60 quotes
-   end.sample
+   end.uniq.delete_if {|quote| quote[:body] == "" }.sample
   end
 
   def self.random_authors
@@ -29,8 +29,9 @@ class QuotesApp::Scraper
 
   def self.author_quote(author_link)
     author_quote_page = Nokogiri::HTML(open(author_link))                                                                         #author_quote_page = Nokogiri::HTML(open("https://www.brainyquote.com//authors/martin-luther-king-jr-quotes"))
-    author_quote_page.css(".reflow_body .m-brick").collect do |i|
+    author_quote_page.css("#quotesList .grid-item").collect do |i|
       {:body => i.css("a.b-qt").text, :author => i.css("a.bq-aut").text}                                                          # The webpage for each author contains 60 quotes
-    end.sample
+    end.uniq.delete_if {|quote| quote[:body] == "" }.sample
   end
+
 end
