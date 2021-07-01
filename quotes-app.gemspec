@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Luis Martinez'"]
   spec.email         = ["'luis_mmartinez@live.com'"]
 
-  spec.summary       = %q{Dipslay random quotes, from authors, and from categories.}
-  spec.description   = %q{Get a qoute randomly or from a list of authors or from a list of categories.}
+  spec.summary       = %q{Dipslay random quotes, quotes from authors, and quotes from categories.}
+  spec.description   = %q{Get a random quote or a quote from a list of 10 authors or a quote from a list of 5 categories.}
   spec.homepage      = "https://github.com/mmartinezluis/quotes-app-cli.git"
   spec.license       = "MIT"
 

@@ -1,4 +1,4 @@
-class Quote                                   #This Quote class is not used in the CLI (it is optional quote class)      #This Quote class does not use object collaboration.
+class Quote        #This Quote class is not used in the CLI (it is optional quote class)      #This Quote class does not use object collaboration.
 
   attr_accessor :body, :author, :category
 
@@ -12,7 +12,6 @@ class Quote                                   #This Quote class is not used in t
   def self.create_from_list (quotes_array)
     quotes_array.each {|quote| self.new(quote)}
   end
-
 
   def self.random
     chosen = @@all.sample

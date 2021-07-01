@@ -12,8 +12,27 @@ class QuotesApp::CLI
   end
 
   def call
-    main_menu_display
     main_menu_method
+    closing_method
+  end
+
+  def main_menu_method
+    main_menu_display
+    @input = nil
+    until @input == "exit"
+      @input = gets.strip.downcase
+      case @input
+      when "1"
+        option1_method
+      when "2"
+        option2_master_method
+      when "3"
+        option3_master_method                                                                                   # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
+      when "exit"
+      else
+        puts "Invalid input. Please enter 1, 2 or 3. If you would like to end the session, type exit."
+      end
+    end
   end
 
   def main_menu_display
@@ -23,27 +42,6 @@ class QuotesApp::CLI
     puts  "  2. Quote from category"
     puts  "  3. Quote from random authors list"
     puts  "\nEnter the number for your desired option. If you would like to end the session, type exit."
-  end
-
-  def main_menu_method
-    input = gets.strip.downcase
-    case input
-    when "1"
-      option1_method
-    when "2"
-      option2_first_level_method
-      category_input = option2_helper_method_input                                                                 # Make the variable "category_input" equal to the return value from the "option2_helper_method_input"
-      option2_second_level_method(category_input)
-    when "3"
-      option3_first_level_method                                                                                   # Make the variable "author_input" equal to the return value from the "option3_helper_method_input"
-      author_input = option3_helper_method_input
-      option3_second_level_method(author_input)
-    when "exit"
-      closing_method
-    else
-      puts "Invalid input. Please enter 1, 2 or 3. If you would like to end the session, type exit."
-      main_menu_method
-    end
   end
 
   def load_and_create_authors
@@ -66,20 +64,23 @@ class QuotesApp::CLI
     puts "\n"
     QuotesApp::CollaboratingQuote.random
     puts "\nFor another quote, press 1; for main menu, press 2; to end the session, press any other key."
-    end_method_input = gets.to_i
-    if end_method_input == 1
+    @input = gets.to_i
+    if @input == 1
       option1_method
-    elsif end_method_input == 2
-      self.call
+    elsif @input == 2
+      main_menu_method
     else
-      closing_method
+      @input = "exit"
     end
+    @input
   end
 
-  def option2_first_level_method
+  def option2_master_method
     puts "Categories:"
     QuotesApp::Category.list
     puts "\nEnter the number for your desired category."
+    category_input = option2_helper_method_input
+    option2_second_level_method(category_input)
   end
 
   def option2_helper_method_input
@@ -96,20 +97,23 @@ class QuotesApp::CLI
     puts "\n"
     QuotesApp::Category.quote_from_category(category_input)
     puts "\nFor another quote from this category, press 1; for main menu, press 2; to end the session, press any other key."
-    end_method_input = gets.to_i
-    if end_method_input == 1
+    @input = gets.to_i
+    if @input == 1
       option2_second_level_method(category_input)
-    elsif end_method_input == 2
-      self.call
+    elsif @input == 2
+      main_menu_method
     else
-      closing_method
+      @input = "exit"
     end
+    @input
   end
 
-  def option3_first_level_method
+  def option3_master_method
     puts "Authors:"
     QuotesApp::Author.list
     puts "\nEnter the number for your desired author."
+    author_input = option3_helper_method_input
+    option3_second_level_method(author_input)
   end
 
   def option3_helper_method_input
@@ -126,14 +130,15 @@ class QuotesApp::CLI
     puts "\n"
     QuotesApp::Author.quote_from_author(author_input)
     puts "\nFor another quote from this author, press 1; for main menu, press 2; to end the session, press any other key."
-    end_method_input = gets.to_i
-    if end_method_input == 1
+    @input = gets.to_i
+    if @input == 1
       option3_second_level_method(author_input)
-    elsif end_method_input == 2
-      self.call
+    elsif @input == 2
+      main_menu_method
     else
-      closing_method
+      @input = "exit"
     end
+    @input
   end
 
   def closing_method
@@ -141,12 +146,3 @@ class QuotesApp::CLI
     puts "Session ended."
   end
 end
-
-
-
-
-    #Optional Quote class, if object collaboration is not desired.
-#  def load_and_create_quotes
-#    loaded_quotes = QuotesApp::Scraper.random_quote
-#    Quote.new(loaded_quotes)
-#  end
